@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @test.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @test.content %>
+</p>
+
+<p>
+  <strong>Thumb:</strong>
+  <br>
+  <%= @test.thumb.attached? ? image_tag(@test.thumb) : '' %>
+</p>
+
+<p>
+  <strong>Subcategories:</strong>
+  <ul>
+  <% @test.children.each do |children| %>
+    <li> <%= children.title %> </li>
+  
+  <% end %>
+  </ul>
+</p>
+
+<div>
+  <strong>Images:</strong>
+  <br>
+  <%= render partial: "image", locals: { collection: @test.subtree } %>
+</div>
+
+
+<%= link_to 'Edit', edit_test_path(@test) %> |
+<%= link_to 'Back', tests_path %>

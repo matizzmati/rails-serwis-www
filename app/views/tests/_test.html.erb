@@ -1,0 +1,14 @@
+<ul>
+    <% collection.arrange.each do |test, sub_item| %>
+        <li>
+            <!-- Category -->
+            <%= test.title %> <%= link_to 'Show', test %> <%= link_to 'Edit', edit_test_path(test) %> <%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+            <!-- Children -->
+            <% if test.has_children? %>
+                <%= render partial: "test", locals: { collection: test.children } %>
+            <% end %>
+
+        </li>
+    <% end %>
+</ul>

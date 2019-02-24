@@ -1,0 +1,20 @@
+<div>
+    <% collection.arrange.each do |test, sub_item| %>
+        <div>
+            <% if test.images.attached? %>
+                <% test.images.each do |image| %>
+                <div>
+                    <%= image_tag(image) %>
+                    <%= link_to 'Usun', tests_kaboom_path(image_id: image.id, id: test.id), method: :post %>
+                </div>
+                <% end %>
+            <% end %>
+
+            <!-- Children -->
+            <% if test.has_children? %>
+                <%= render partial: "image", locals: { collection: test.children } %>
+            <% end %>
+
+        </div>
+    <% end %>
+</div>
